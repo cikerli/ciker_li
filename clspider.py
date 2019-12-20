@@ -45,7 +45,7 @@ def craw(url):
     pat = 'data-src=(.+?\.jpg)'    
     imagelist = re.compile(pat).findall(html2)
 
-    pat1 = '<title>(.+?)</title>'
+    pat1 = '<h4>(.+?)</h4>'
     title = re.compile(pat1).findall(html2)
 
     #转码
@@ -54,7 +54,7 @@ def craw(url):
     titpath = titlepath.decode('GBK')
 
     #保存路径
-    path = "e:/temp/img/"+str(titpath[:8])+"/"     #只要8个字，太长没用
+    path = "e:/temp/img/"+str(titpath)+"/"     #只要8个字，太长没用
     
     if os.path.exists(path)	:
         path = path[:-1] + "1/"
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     #记录开始时间
     start = datetime.datetime.now()
     #url
-    url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=7"
+    url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=9"
     #get link
     linklist = getlink(url)
 
