@@ -58,9 +58,9 @@ def craw(url):
     
     if os.path.exists(path)	:
         path = path[:-1] + "1/"
-        os.mkdir( path )
+        os.makedirs( path )
     else:
-        os.mkdir( path )
+        os.makedirs( path )
 
     #存储jpg
     x = 1
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     #记录开始时间
     start = datetime.datetime.now()
     #url
-    url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=9"
+    url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=1"
     #get link
     linklist = getlink(url)
 
