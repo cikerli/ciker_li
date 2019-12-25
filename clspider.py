@@ -42,7 +42,7 @@ def craw(url):
     html2 = str(html1).encode('GB2312').decode('GB2312')
 
     #找到jpg
-    pat = 'data-src=(.+?\.jpg)'    
+    pat = 'data-src=\\\\\'(.+?\.jpg)'    
     imagelist = re.compile(pat).findall(html2)
 
     pat1 = '<h4>(.+?)</h4>'
@@ -67,7 +67,6 @@ def craw(url):
     threads = []
     for imageurl in imagelist:
         imagename = path+str(x)+".jpg"
-        imageurl = imageurl[2:]
         t = threading.Thread(target=downLoad,args=(imageurl,imagename))
         t.start()
         threads.append(t)
@@ -98,23 +97,27 @@ def getlink(url):
 
     return link
 
-
-if __name__ == '__main__':
+def main():
     #记录开始时间
     start = datetime.datetime.now()
-    #url
-    url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=1"
-    #get link
-    linklist = getlink(url)
+    try:
+        #url
+        url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=9"
+        #get link
+        linklist = getlink(url)
 
-    #多进程Pool
-    pool=Pool()
-    print("多进程下载开始")
-    pool.map(craw,linklist)
-    pool.close()
+        #多进程Pool
+        pool=Pool()
+        print("多进程下载开始")
+        pool.map(craw,linklist)
+        pool.close()
+    finally:
+        
 
-    #记录结束时间
-    end = datetime.datetime.now()
-    print("全部结束，共耗时：")
-    print((end - start).minute)
+        #记录结束时间
+        end = datetime.datetime.now()
+        print("全部结束，共耗时：")
+        print((end - start).minute)
 
+if __name__ == '__main__':
+    main()
