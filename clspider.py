@@ -102,7 +102,9 @@ def main():
     start = datetime.datetime.now()
     try:
         #url
+
         url = "https://cl.bbbck.xyz/thread0806.php?fid=16&search=&page=2"
+
         #get link
         linklist = getlink(url)
 
@@ -121,6 +123,5 @@ def main():
         second = totle.seconds%60
         print("全部结束，共耗时：%d 分钟 %d 秒"%(minute,second))
         
-
 if __name__ == '__main__':
     main()
